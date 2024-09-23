@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
+    <title>Perfil con Galería</title>
     <style>
- body {
-            font-family: Arial, sans-serif;
+        body {
+            font-family: 'Times New Roman', Times, serif;
             text-align: center;
-            background-color: #f0f0f0;
+            background-color: #ffffff;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             flex-direction: column;
+            position: relative;
+            transition: background-color 0.5s ease;
         }
 
         .perfil-img {
@@ -30,56 +31,172 @@
             font-size: 16px;
             color: #555;
             margin-top: 10px;
-        }
-
-        .enlaces {
-            margin-top: 20px;
-        }
-
-        .enlaces a {
-            text-decoration: none;
-            color: #333;
-            margin: 0 10px;
-            font-size: 24px;
             transition: color 0.3s ease;
         }
 
-        .enlaces a:hover {
-            color: #0077b5; /* Cambia este color según la red social */
+        .enlaces {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            background-color: #d3d3d3; /* Color gris clarito */
+            border-radius: 10px;
+            padding: 10px;
+            gap: 10px;
         }
 
-        /* Línea divisora */
+        .enlaces a {
+            color: black; 
+        }
+
+        .galeria {
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+            margin-top: 20px; 
+        }
+
+        .galeria img {
+            width: 200px; 
+            height: auto; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .galeria img:hover {
+            transform: scale(1.02); 
+            filter: brightness(80%); 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .desaparecer {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cuadro {
+            background-color: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            max-width: 300px;
+        }
+
+        .cerrar-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            color: black;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
         hr {
-            width: 80%;
-            border: 0.5px solid #ddd;
-            margin: 20px auto;
-    }
+            width: 10%;
+            border: 1px solid white;
+        }
     </style>
 </head>
 <body>
+
     <img src="/fotos/navas.png" alt="Foto de Jesús Navas" class="perfil-img">
-
     <div class="descripcion">
-        <p>Este es Jesús Navas, futbolista del Sevilla F.C.
-        </p>
-        <p>
-            Se retira en diciembre y pasará a ser la mayor leyenda del equipo.
-        </p>
-        <p>
-            Un jugador que ama a su club por encima de todo.
-        </p>
+        <p>Este es Jesús Navas, futbolista del Sevilla F.C. Un jugador que ama a su club, y que se retirará por todo lo alto, siendo la mayor leyenda de la entidad.</p>
     </div>
-
-    <hr>
 
     <div class="enlaces">
-        <img src="/fotos/insta.png" alt="" a href="https://www.facebook.com" target="_blank" title="Facebook">&#xf09a;</a>
-        <a href="https://www.twitter.com" target="_blank" title="Twitter">&#xf099;</a>
-        <a href="https://www.instagram.com/jnavas16/?hl=es" target="_blank" title="Instagram">&#xf16d;</a>
-        <a href="https://www.linkedin.com" target="_blank" title="LinkedIn">&#xf0e1;</a>
+        <a href="https://x.com/JNavas?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank" title="Twitter">
+            <img src="/fotos/x.png" alt="Twitter" style="width: 40px; height: 40px;">
+        </a>
+        <a href="https://www.instagram.com/jnavas16/?hl=es" target="_blank" title="Instagram">
+            <img src="/fotos/insta.png" alt="Instagram" style="width: 40px; height: 40px;">
+        </a>
     </div>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    
+    <div class="galeria">
+        <img src="/fotos/1.jpg" alt="Imagen 1" onclick="mostrarCuadro('Imagen 1', 'Campeón UEFA 2020', '/fotos/1.jpg')" onmouseover="iniciarCambioColor()" onmouseout="detenerCambioColor()">
+        <img src="/fotos/2.jpg" alt="Imagen 2" onclick="mostrarCuadro('Imagen 2', 'Campeón Nations League 2023', '/fotos/2.jpg')" onmouseover="iniciarCambioColor()" onmouseout="detenerCambioColor()">
+        <img src="/fotos/3.jpg" alt="Imagen 3" onclick="mostrarCuadro('Imagen 3', 'Campeón UEFA 2007', '/fotos/3.jpg')" onmouseover="iniciarCambioColor()" onmouseout="detenerCambioColor()">
+        <img src="/fotos/4.jpg" alt="Imagen 4" onclick="mostrarCuadro('Imagen 4', 'Campeón Mundial 2024', '/fotos/4.jpg')" onmouseover="iniciarCambioColor()" onmouseout="detenerCambioColor()">
+    </div>
+
+    <div class="desaparecer" id="desaparecer">
+        <div class="cuadro">
+            <img id="imagen-cuadro" src="" alt="" style="max-width: 100%;">
+            <p id="descripcion-cuadro"></p>
+        </div>
+    </div>
+
+    <button class="cerrar-btn" onclick="cerrarCuadro()">&times;</button>
+
+    <script>
+        let intervalId;
+
+        function obtenerColorAleatorio() {
+            let randomColor;
+            do {
+                randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            } while (randomColor === 'ffffff' || randomColor === '000000'); 
+            return `#${randomColor}`;
+        }
+
+        function iniciarCambioColor() {
+            if (intervalId) return;
+            document.querySelector('.descripcion').style.color = 'white';
+            document.querySelector('.enlaces').style.color = 'white';
+            intervalId = setInterval(() => {
+                document.body.style.backgroundColor = obtenerColorAleatorio();
+            }, 350);
+        }
+
+        function detenerCambioColor() {
+            clearInterval(intervalId);
+            intervalId = null;
+            document.body.style.backgroundColor = '#ffffff';
+            document.querySelector('.descripcion').style.color = '#555'; 
+            document.querySelector('.enlaces').style.color = '#555'; 
+        }
+
+        function mostrarCuadro(titulo, descripcion, src) {
+            detenerCambioColor();
+            document.getElementById('desaparecer').style.display = 'flex';
+            document.body.style.backgroundColor = 'black';
+            document.getElementById('imagen-cuadro').src = src;
+            document.getElementById('descripcion-cuadro').innerText = descripcion;
+            document.querySelector('.galeria').style.display = 'none';
+            document.querySelector('.perfil-img').style.display = 'none';
+            document.querySelector('.descripcion').style.display = 'none';
+            document.querySelector('.enlaces').style.display = 'none';
+            document.querySelector('.cerrar-btn').style.display = 'block';
+        }
+
+        function cerrarCuadro() {
+            document.getElementById('desaparecer').style.display = 'none';
+            document.body.style.backgroundColor = '#f0f0f0';
+            document.querySelector('.galeria').style.display = 'flex';
+            document.querySelector('.perfil-img').style.display = 'block';
+            document.querySelector('.descripcion').style.display = 'block';
+            document.querySelector('.enlaces').style.display = 'block';
+            document.querySelector('.cerrar-btn').style.display = 'none';
+            detenerCambioColor();
+        }
+    </script>
+
 </body>
 </html>
