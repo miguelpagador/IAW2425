@@ -3,9 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Perfil</title>
+    <style>
+ body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .perfil-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #333;
+            object-fit: cover;
+        }
+
+        .descripcion {
+            font-size: 16px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .enlaces {
+            margin-top: 20px;
+        }
+
+        .enlaces a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s ease;
+        }
+
+        .enlaces a:hover {
+            color: #0077b5; /* Cambia este color según la red social */
+        }
+
+        /* Línea divisora */
+        hr {
+            width: 80%;
+            border: 0.5px solid #ddd;
+            margin: 20px auto;
+    }
+    </style>
 </head>
 <body>
+    <img src="/fotos/navas.png" alt="Foto de Jesús Navas" class="perfil-img">
+
+    <div class="descripcion">
+        <p>Este es Jesús Navas, futbolista del Sevilla F.C.
+        </p>
+        <p>
+            Se retira en diciembre y pasará a ser la mayor leyenda del equipo.
+        </p>
+        <p>
+            Un jugador que ama a su club por encima de todo.
+        </p>
+    </div>
+
+    <hr>
+
+    <div class="enlaces">
+        <img src="/fotos/insta.png" alt="" a href="https://www.facebook.com" target="_blank" title="Facebook">&#xf09a;</a>
+        <a href="https://www.twitter.com" target="_blank" title="Twitter">&#xf099;</a>
+        <a href="https://www.instagram.com/jnavas16/?hl=es" target="_blank" title="Instagram">&#xf16d;</a>
+        <a href="https://www.linkedin.com" target="_blank" title="LinkedIn">&#xf0e1;</a>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     
 </body>
 </html>
