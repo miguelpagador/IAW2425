@@ -26,7 +26,7 @@
         let EURO_RATE = 0.85; // Tasa de conversión de USD a EUR
         let DOLLAR_RATE = 1.18; // Tasa de conversión de EUR a USD
 
-        const convertToEuros = () => {
+        function convertToEuros() {
             let amount = parseFloat(document.getElementById('amount').value);
             if (isValidAmount(amount)) {
                 let euros = (amount * EURO_RATE).toFixed(2);
@@ -34,9 +34,9 @@
             } else {
                 displayResult('Por favor, introduce un valor numérico positivo.');
             }
-        };
+        }
 
-        const convertToDollars = () => {
+        function convertToDollars() {
             let amount = parseFloat(document.getElementById('amount').value);
             if (isValidAmount(amount)) {
                 let dollars = (amount * DOLLAR_RATE).toFixed(2);
@@ -44,13 +44,15 @@
             } else {
                 displayResult('Por favor, introduce un valor numérico positivo.');
             }
-        };
+        }
 
-        const isValidAmount = (value) => !isNaN(value) && value > 0;
+        function isValidAmount(value) {
+            return !isNaN(value) && value > 0;
+        }
 
-        const displayResult = (message) => {
+        function displayResult(message) {
             document.getElementById('result').innerText = message;
-        };
+        }
     </script>
 </body>
 </html>

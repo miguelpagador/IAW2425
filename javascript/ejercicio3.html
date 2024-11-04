@@ -24,7 +24,7 @@
     <script>
         let dniLetters = "TRWAGMYFPDXBNJZSQVHLCKE";
 
-        const calculateDNILetter = () => {
+        function calculateDNILetter() {
             let dniNumber = document.getElementById('dni').value;
 
             if (isValidDNI(dniNumber)) {
@@ -34,13 +34,15 @@
             } else {
                 displayDNILetter('Error: el DNI debe tener 8 dígitos numéricos.');
             }
-        };
+        }
 
-        const isValidDNI = (dni) => /^\d{8}$/.test(dni);
+        function isValidDNI(dni) {
+            return /^\d{8}$/.test(dni);
+        }
 
-        const displayDNILetter = (message) => {
+        function displayDNILetter(message) {
             document.getElementById('dniResult').innerText = message;
-        };
+        }
     </script>
 </body>
 </html>
