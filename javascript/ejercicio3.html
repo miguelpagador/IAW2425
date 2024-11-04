@@ -22,23 +22,25 @@
     </div>
 
     <script>
-        const dniLetters = "TRWAGMYFPDXBNJZSQVHLCKE";
+        let dniLetters = "TRWAGMYFPDXBNJZSQVHLCKE";
 
-        function calculateDNILetter() {
-            const dniNumber = document.getElementById('dni').value;
+        const calculateDNILetter = () => {
+            let dniNumber = document.getElementById('dni').value;
 
             if (isValidDNI(dniNumber)) {
-                const dniIndex = parseInt(dniNumber) % 23;
-                const letter = dniLetters[dniIndex];
-                document.getElementById('dniResult').innerText = `La letra correspondiente es: ${letter}`;
+                let dniIndex = parseInt(dniNumber) % 23;
+                let letter = dniLetters[dniIndex];
+                displayDNILetter(`La letra correspondiente es: ${letter}`);
             } else {
-                document.getElementById('dniResult').innerText = 'Error: el DNI debe tener 8 dígitos numéricos.';
+                displayDNILetter('Error: el DNI debe tener 8 dígitos numéricos.');
             }
-        }
+        };
 
-        function isValidDNI(dni) {
-            return /^\d{8}$/.test(dni);
-        }
+        const isValidDNI = (dni) => /^\d{8}$/.test(dni);
+
+        const displayDNILetter = (message) => {
+            document.getElementById('dniResult').innerText = message;
+        };
     </script>
 </body>
 </html>

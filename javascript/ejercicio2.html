@@ -23,36 +23,34 @@
     </div>
 
     <script>
-        const EURO_RATE = 0.85; // Tasa de conversión de USD a EUR
-        const DOLLAR_RATE = 1.18; // Tasa de conversión de EUR a USD
+        let EURO_RATE = 0.85; // Tasa de conversión de USD a EUR
+        let DOLLAR_RATE = 1.18; // Tasa de conversión de EUR a USD
 
-        function convertToEuros() {
-            const amount = parseFloat(document.getElementById('amount').value);
+        const convertToEuros = () => {
+            let amount = parseFloat(document.getElementById('amount').value);
             if (isValidAmount(amount)) {
-                const euros = (amount * EURO_RATE).toFixed(2);
-                document.getElementById('result').innerText = `${amount} USD son ${euros} EUR.`;
+                let euros = (amount * EURO_RATE).toFixed(2);
+                displayResult(`${amount} USD son ${euros} EUR.`);
             } else {
-                showError('Por favor, introduce un valor numérico positivo.');
+                displayResult('Por favor, introduce un valor numérico positivo.');
             }
-        }
+        };
 
-        function convertToDollars() {
-            const amount = parseFloat(document.getElementById('amount').value);
+        const convertToDollars = () => {
+            let amount = parseFloat(document.getElementById('amount').value);
             if (isValidAmount(amount)) {
-                const dollars = (amount * DOLLAR_RATE).toFixed(2);
-                document.getElementById('result').innerText = `${amount} EUR son ${dollars} USD.`;
+                let dollars = (amount * DOLLAR_RATE).toFixed(2);
+                displayResult(`${amount} EUR son ${dollars} USD.`);
             } else {
-                showError('Por favor, introduce un valor numérico positivo.');
+                displayResult('Por favor, introduce un valor numérico positivo.');
             }
-        }
+        };
 
-        function isValidAmount(value) {
-            return !isNaN(value) && value > 0;
-        }
+        const isValidAmount = (value) => !isNaN(value) && value > 0;
 
-        function showError(message) {
+        const displayResult = (message) => {
             document.getElementById('result').innerText = message;
-        }
+        };
     </script>
 </body>
 </html>
