@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Mensajes</title>
+    <style>
+        .message-box { border: 1px solid #ddd; padding: 10px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Sistema de Mensajes</h2>
+    <input type="text" id="mensajeInput" placeholder="Escribe un mensaje">
+    <button onclick="agregarMensaje()">Enviar</button>
+    <div id="listaMensajes" class="message-box"></div>
+
+    <script>
+        const mensajes = [];
+
+        function agregarMensaje() {
+            const mensaje = document.getElementById('mensajeInput').value.trim();
+            if (mensaje) {
+                mensajes.push(mensaje);
+                mensajes.sort(); // Ordenar mensajes alfabéticamente
+                mostrarMensajes();
+                document.getElementById('mensajeInput').value = '';
+            }
+        }
+
+        function mostrarMensajes() {
+            const listaMensajes = document.getElementById('listaMensajes');
+            listaMensajes.innerHTML = '';
+
+            mensajes.forEach((msg, index) => {
+                const mensajeDiv = document.createElement('div');
+                mensajeDiv.innerHTML = `${msg} <button onclick="eliminarMensaje(${index})">🗑️</button>`;
+                listaMensajes.appendChild(mensajeDiv);
+            });
+        }
+
+        function eliminarMensaje(index) {
+            mensajes.splice(index, 1);
+            mostrarMensajes();
+        }
+    </script>
+</body>
+</html>
