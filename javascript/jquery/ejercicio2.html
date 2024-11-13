@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ocultar y Aparecer Selectivo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1 id="encabezado">Encabezado Principal</h1>
+    <p>Este es el primer párrafo.</p>
+    <p class="pares">Este es el segundo párrafo.</p>
+    <p>Este es el tercer párrafo.</p>
+    <p class="pares">Este es el cuarto párrafo.</p>
+    
+    <button id="ocultar">Ocultar</button>
+    <button id="aparecer">Aparecer</button>
+
+    <script>
+        // Usamos el ID para el encabezado y la clase para los párrafos pares
+        $("#ocultar").click(function() {
+            $("#encabezado").hide();  // Oculta el encabezado con ID "encabezado"
+            $(".pares").hide();       // Oculta los párrafos con clase "pares"
+        });
+        
+        $("#aparecer").click(function() {
+            $("#encabezado").show();  // Muestra el encabezado con ID "encabezado"
+            $(".pares").show();       // Muestra los párrafos con clase "pares"
+        });
+    </script>
+</body>
+</html>
+

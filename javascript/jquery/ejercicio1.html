@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ocultar y Aparecer</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Encabezado Principal</h1>
+    <p>Este es el primer párrafo.</p>
+    <p>Este es el segundo párrafo.</p>
+    <p>Este es el tercer párrafo.</p>
+    <button id="ocultar">Ocultar</button>
+    <button id="aparecer">Aparecer</button>
+
+    <script>
+        $("#ocultar").click(function() {
+            $("h1, p").hide();
+        });
+        $("#aparecer").click(function() {
+            $("h1, p").show();
+        });
+    </script>
+</body>
+</html>
