@@ -5,28 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AJAX</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
   <body>
-    <h1>Consumiento datos de la API de openweathermap</h1>
-    <input type="text" name="" id="ciudad" placeholder="ciudad">
-    <button onclick="obtenerTiempo()">Ver tiempo</button>
+    <h1>Obteniendo nuestra IP pública</h1>
     <div class="container">
+        <p>El objetivo de este ejercicio es cargar un archivo JSON de un servidor que nos proporciona nuestra IP pública.</p>
         <p id="objetivo"></p>
     </div>
     <script>
-        /* Completar el código jQuery aquí */
-      function obtenerTiempo(){
-        let url = "https://api.openweathermap.org/data/2.5/weather?q=";
-        let ciudad = $("#ciudad").val();
-        let apiKey = "34d26bc9e7a231a257e521ed2fb9f89b";
-        $.get(url+ciudad+"&appid="+apiKey, function(data){
-          $("#objetivo").text("El tiempo actual es "+data.weather[0].main)
-        })
-
-      }
-        
+        $(document).ready(function() {
+            // Realizar la solicitud GET al servicio JSONIP
+            $.get('https://jsonip.com', function(data) {
+                // Mostrar la IP pública en el párrafo con id "objetivo"
+                $('#objetivo').text('Tu IP pública es: ' + data.ip);
+            })
+            .fail(function() {
+                // En caso de error, mostrar un mensaje de error
+                $('#objetivo').text('No se pudo obtener la IP pública.');
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   </body>
