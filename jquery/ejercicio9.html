@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Las funciones each y append en jQuery</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+    <!-- Incluye aquí jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Las funciones each y append en jQuery</h1>
+    <ul>
+        <li><a href="">Enlace 1</a></li>
+        <li><a href="">Enlace 2</a></li>
+        <li><a href="">Enlace 3</a></li>
+        <li><a href="">Enlace 4</a></li>
+        <li><a href="">Enlace 5</a></li>
+        <li><a href="">Enlace 6</a></li>
+    </ul>
+
+    <script>
+        $(document).ready(function() {
+            // Iterar sobre cada enlace y agregar un evento de clic
+            $('ul li a').each(function() {
+                $(this).click(function(event) {
+                    event.preventDefault(); // Prevenir la acción por defecto (navegar)
+                    
+                    // Agregar el texto " - Visitado" al enlace cuando se haga clic
+                    $(this).append(' - Visitado');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
