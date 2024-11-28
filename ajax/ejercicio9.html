@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts JSONPlaceholder</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <button id="load-posts">Cargar Posts</button>
+    <div id="posts-container"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#load-posts').click(function() {
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/posts',
+                    method: 'GET',
+                    success: function(data) {
+                        $('#posts-container').empty();
+                        data.forEach(function(post) {
+                            $('#posts-container').append(`
+                                <div>
+                                    <h3>${post.title}</h3>
+                                    <p>${post.body}</p>
+                                </div>
+                            `);
+                        });
+                    },
+                    error: function() {
+                        alert('Error al cargar los posts.');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

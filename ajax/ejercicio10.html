@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Fotos</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        img { width: 100px; height: 100px; margin: 10px; }
+    </style>
+</head>
+<body>
+
+    <button id="load-photos">Cargar Fotos</button>
+    <div id="gallery-container"></div>
+
+    <script>
+        $(document).ready(function() {
+            $('#load-photos').click(function() {
+                $.ajax({
+                    url: 'https://jsonplaceholder.typicode.com/photos',
+                    method: 'GET',
+                    success: function(data) {
+                        $('#gallery-container').empty();
+                        data.slice(0, 20).forEach(function(photo) {
+                            $('#gallery-container').append(`
+                                <img src="${photo.thumbnailUrl}" alt="${photo.title}" />
+                            `);
+                        });
+                    },
+                    error: function() {
+                        alert('Error al cargar las fotos.');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
