@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <title>Índice de masa corporal</title>
+</head>
+<body>
+    Peso: <input type="text" placeholder="Introduce tu peso en Kg" id="peso">
+    Estatura: <input type="text" placeholder="Introduce tu estatura en cm" id="estatura">
+    <p id="resultado"></p>
+    <button onclick="calcularIMC()">Calcular IMC</button>
+
+    <script>
+        function calcularIMC (){
+            let peso = parseFloat(document.getElementById("peso").value);
+            let estaturaMetros = parseInt (document.getElementById("estatura").value)/100;
+            let estaturaElevada = Math.pow(estaturaMetros,2);
+            let resultado = peso/estaturaElevada;
+            if(resultado < 18.5)
+                document.getElementById("resultado").innerHTML = "Tu IMC es de " + resultado + ". Su peso es inferior al normal";
+            else if (resultado <= 24.9)
+                document.getElementById("resultado").innerHTML = "Tu IMC es de " + resultado + ". Su peso es normal";
+            else if (resultado <= 30)
+                document.getElementById("resultado").innerHTML = "Tu IMC es de " + resultado + ". Su peso es superior al normal";
+            else
+                document.getElementById("resultado").innerHTML = "Tu IMC es de " + resultado + ". Usted tiene sobrepeso";
+        }
+    </script>
+</body>
+</html>

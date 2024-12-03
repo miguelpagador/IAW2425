@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    Escriba su mensaje: <input type="text" id="mensaje">
+    <button onclick="mostrar()">Publicar mensaje</button>
+    <button onclick="ordenar()">Ordenar mensajes</button>
+    <div id="publicaciones"></div>
+    <script>
+    
+        let array = [];
+
+        function mostrar () {
+            
+            let mensaje = document.getElementById("mensaje").value;
+            array.push(mensaje);
+            document.getElementById("publicaciones").innerHTML ="";
+
+            for(let i = 0; i < array.length; i++) {
+                let contenido = document.createElement('div');
+                contenido.innerHTML= '<p id =' + i + ' >' + array[i] + '<img onclick="eliminar('+i+')" width="60px" src="/img/borrar-mensaje.png" alt="icono"></p>';
+                document.getElementById("publicaciones").appendChild(contenido);
+            }
+        }
+
+        function eliminar (posicion){
+            document.getElementById(posicion).outerHTML=""
+            array.splice(posicion,1);
+        }
+
+        function ordenar (){
+            document.getElementById("publicaciones").innerHTML ="";
+            array.sort();
+            for(let i = 0; i < array.length; i++) {
+                let contenido = document.createElement('div');
+                contenido.innerHTML= '<p id =' + i + ' >' + array[i] + '<img onclick="eliminar('+i+')" width="60px" src="/img/borrar-mensaje.png" alt="icono"></p>';
+                document.getElementById("publicaciones").appendChild(contenido);
+            }
+        }
+    </script>
+</body>
+</html>

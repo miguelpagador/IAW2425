@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/img/PN.jpeg" type="image/x-icon">
+    <title>Ejercicio 3</title>
+    <style>
+        #panel{
+            background-color:#AABD8C;
+            width: 30%;
+            height: 40%;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 6px;
+            border-style: dashed;
+        }
+        body {
+            background-color: #3E6990;
+            /*Centrado*/
+            display: grid;
+            place-items: center; 
+            height: 100vh; 
+        }
+        button{
+            background-color: #F0F7EE;
+            border-radius: 6px;
+            border: none;
+            text-align: center;
+            font-size: 12px;
+            padding: 12px;
+            width: 160px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+        #boton span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+        #boton span:after {
+            content: '\2794';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        #boton:hover span {
+            padding-right: 25px;
+        }
+
+        #boton:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+        input::placeholder{
+            text-align: center;
+        }
+        input{
+            width: 200px;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: none;
+        }
+        #alert-danger {
+            background-color: #f2dede;
+            border-color: #ebccd1;
+            color: #a94442;
+        }
+
+        .alerta {
+        visibility: hidden;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 200px;
+        padding: 20px;
+        background-color: #4a4a4a;
+        color: #ffffff;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="panel">
+        <h1>Adivinemos la letra de su DNI...</h1>
+        <input type="text" placeholder="Parte numérica del DNI" id="numeros">
+        <p id="respuesta"></p>
+        <button id="boton" onclick="letra(document.getElementById('numeros').value)"><span>Averiguar la letra</span></button>
+        <div class="alerta" id="alerta">
+            <p>Por favor introduzca solo la parte numérica del DNI (8 caracteres)</p>
+            <button onclick="ocultar()">Cerrar pestaña</button>
+        </div>
+    </div>
+    <script>
+        function letra (a) { 
+            if (isNaN(a) || a.length !== 8){
+                // alert("Por favor introduzca solo la parte numérica del DNI (8 carácteres)");
+                document.getElementById("alerta").style.visibility = "visible";
+            }else{
+                let letras = ['T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'];
+                let resto = parseInt(a)%23;
+                document.getElementById("respuesta").innerHTML = "La letra de su DNI es: " + letras[resto];
+            
+            }
+        }
+        function ocultar (){
+            document.getElementById("alerta").style.visibility = "hidden";
+        }
+    </script>
+</body>
+</html>

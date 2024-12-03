@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <title>Muestra un País</title>
+    <style>body{text-align: center;}#datos{margin: 180px;}.formato{margin-bottom: 100px;border: 2px dashed black;text-align: center; margin: 2rem}</style>
+</head>
+<body>
+        <h1>¡Dime un país!</h1>
+        <input type="text" id="pais">
+        <button>Enviar</button>
+        <div id="datos"></div>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function(){
+                let pais = $("#pais").val();
+                $.ajax({
+
+                    url:"https://restcountries.com/v3.1/translation/" + pais + "?fields=name,capital,population,flags",
+                    success: function(datos){
+                        console.log(datos);
+                        $("#datos").empty();
+                        $(datos).each(function(index,element){
+                            let nombre = datos[index].name.common;
+                            let capital = datos[index].capital[0];
+                            let poblacion = datos[index].population;
+                            let bandera = datos[index].flags.png;
+                            $("#datos").append("<div class='formato'><p>Nombre: " + nombre + "</p><p>Capital: " + capital + "</p><p>Población: " + poblacion + "</p><p><img src=" + bandera + "></p></div>")
+                        });
+                    },
+                    error: function(){
+                        alert("No se ha podido conectar con el servidor. Por favor, inténtelo más tarde.")
+                    }
+
+                });
+            });
+        });
+    </script>
+</body>
+</html>

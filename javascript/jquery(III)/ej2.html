@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <title>Ver POST sitio web</title>
+    <style>.formato{margin-bottom: 100px;border: 2px dashed black;text-align: center; margin: 2rem;background-color: #acbfa4; color: black;}
+            #contenedor{display: grid;grid-template-columns: auto auto auto auto; grid-gap: 1rem;}
+            body{text-align: center; background-color: #4a5240;}h1{color: white}
+    </style>
+</head>
+<body>
+    <h1>Clickea el boton para ver los posts</h1>
+    <button>Ver Posts</button>
+    <div id="contenedor"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("button").click(function(){
+                $.ajax({
+                    //No funcionan todas las fotos (es algo del servidor no mío)
+                    url:"https://jsonplaceholder.typicode.com/photos/",
+                    success: function(datos){
+                        $("#contenedor").empty();
+                        $(datos).each(function(index,element){
+                            let id = datos[index].id;
+                            let url = datos[index].url;
+                            $("#contenedor").append("<div class='formato'><p>"+id+"</p><img src="+url+"></div>");
+                        });
+                    },
+                    error: function(datos){
+                        alert("No se ha podido establecer conexion con el servidor")
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

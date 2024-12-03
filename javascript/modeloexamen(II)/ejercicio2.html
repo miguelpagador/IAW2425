@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alexandria">
+    <title>Fake Store API</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Alexandria', sans-serif;
+        }
+
+        h1 {
+            font-size: xx-large;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .contenedor {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+
+        .formulario {
+            width: 80%;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            margin: 50px auto;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            padding: 50px;
+            box-shadow: 10px 10px 10px #7c7e8b;
+            overflow: auto;
+            border: 1px dashed black;
+
+        }
+
+        .formulario>* {
+            margin: 10px;
+            padding: 10px;
+        }
+
+        input,
+        label {
+            font-size: 1.5em;
+        }
+
+        button {
+            background-color: #373841;
+            font-size: x-large;
+            height: 60px;
+            width: 25%;
+            border-radius: 20px;
+            color: white;
+            margin-left: 2%;
+            margin-top: 1%;
+        }
+        button:hover {
+            background-color: #545662;
+            opacity: 0.8;
+        }
+        #prodcuto{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="formulario">
+            <h1>Fake Store API</h1>
+            <label for="codProducto">Código producto:</label>
+            <input min="1" type="number" name="codProducto" id="codProducto" value="1">
+            <br>
+            <label for="botones">Acción:</label>
+            <button id="btn-producto">Obtener producto</button>
+            <button id="btn-todos">Ver todos</button>
+            <div id="resultados">
+                <!-- Aqui cargaremos los resultados-->
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#btn-producto").click(function(){
+                $("#resultados").empty();
+                let id = $("#codProducto").val();
+                if(id > 0){
+                    $.get("https://fakestoreapi.com/products/" + id).done(function (data) {
+                        console.log(data);
+                        let imagen = data.image;
+                        let titulo = data.title;
+                        let descripcion = data.description;
+                        let precio = data.price;
+                        $("#resultados").append(
+                            "<p><img width='200px' src=" + imagen + "></p>" +
+                            "<p>" + "Título : " + titulo + "</p>"+
+                            "<p>" + "Descripción: " + descripcion + "</p>"+
+                            "<p>" + "Precio: " + precio + "€" + "</p>"
+                        );
+                    }).fail(function(){
+                        alert("Error cargando datos del servidor");
+                    });
+                }
+            });
+        });
+        $("#btn-todos").click(function(){
+            $("#resultados").empty();
+            $.ajax({
+                url:"https://fakestoreapi.com/products",
+                success: function(data){
+                    console.log(data);
+                    for(let i = 0; i < data.length; i++){
+                        let imagen = data[i].image;
+                        let titulo = data[i].title;
+                        let descripcion = data[i].description;
+                        let precio = data[i].price;
+                        $("#resultados").append("<div id='producto'></div>")
+                        $("#producto").append(
+                            "<p><img width='200px' src=" + imagen + "></p>" +
+                            "<p>" + "Título : " + titulo + "</p>"+
+                            "<p>" + "Descripción: " + descripcion + "</p>"+
+                            "<p>" + "Precio: " + precio + "€" + "</p>"
+                        );
+                    }
+                },
+                error: function(){
+                    alert("Error cargando datos del servidor");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

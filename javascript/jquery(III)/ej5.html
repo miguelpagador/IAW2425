@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <title>Imagen perro</title>
+</head>
+<body>
+    <h1>Haz click en el botón para obtener imágenes aleatorias de perros</h1>
+    <button>Mostrar perro</button>
+    <div id="perro"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("button").click(function(){
+                $.ajax({
+                    url: "https://dog.ceo/api/breeds/image/random",
+                    success:function(datos){
+                        $("#perro").empty();
+                        let imagen = datos.message;
+                        $("#perro").append("<img src="+imagen+">")
+                    },
+                    error: function(){
+                        alert("No se ha podido conectar con el servidor. Por favor, inténtelo más tarde.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

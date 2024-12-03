@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <title>Ejercicio 1</title>
+    <style>
+        #contenedor{
+           display: grid;
+           grid-auto-columns: max-content;
+           justify-content: center;
+           gap: 0.6rem;
+        }
+        body{
+            justify-content: center;
+            text-align: center;
+        }
+        input::placeholder{text-align: center;}
+        button{width: 20%; padding: 0.3rem; border-radius: 5px; background-color: #c79879; margin: 1rem;}
+    </style>
+</head>
+<body>
+    <h1>Adivina el número que he generado...</h1>
+    <div id="contenedor">
+        <label for="">Indica un número entre 0 y 5</label>
+        <input type="text" id="intento" placeholder="Introduce el número">
+    </div>
+    <button id="comprobar">Comprobar</button>
+    <script>
+        function generarNumero(){
+            return Math.floor((Math.random()*5) + 0);
+        }
+        document.getElementById("comprobar").addEventListener('click',function(){
+            let intento = document.getElementById("intento").value;
+            if(!isNaN(intento)){
+                if(generarNumero() == parseInt(intento))
+                    alert("Has acertado el número  generado. Felicidades!!");
+                else
+                    alert("Casi, inténtalo de nuevo");
+            }else
+                alert("Por favor, introduce sólo números comprendidos entre 0 y 5");
+            
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <title>Pokemons</title>
+    <style>body{text-align: center;}</style>
+</head>
+<body>
+    <h1>¡Dime un Pokemon y te dire sus características!</h1>
+    <p><input type="text" id="identificador"></p>
+    <button>Enviar Pokemon</button>
+    <div id="pokemon"></div>
+
+    <script>
+        $(document).ready(function () {
+            $("button").click(function(){
+                let identificador = $("#identificador").val();
+                $.ajax({
+                    url:"https://pokeapi.co/api/v2/pokemon/"+identificador,
+                    success:function(datos){
+                        console.log(datos);
+                        $("#pokemon").empty();
+                        let nombre = datos.name;
+                        let tipo = datos.types[0].type.name;
+                        //Preguntar si se puede obtener objectos de un enlace externo
+                        let habilidad1 = datos.abilities[0].ability.name;
+                        let habilidad2 = datos.abilities[1].ability.name;
+                        let peso = datos.weight;
+                        let imagen = datos.sprites.front_default
+                        $("#pokemon").append("<p>Nombre: "+nombre+"</p><p>Tipo: "+tipo+"</p><p>Habilidades: <br>"+habilidad1+"<br>"+habilidad2+"</p><p>Peso: "+peso+"</p><img src="+imagen+">");
+                    },
+                    error: function(){
+                        alert("No se ha podido conectar con el servidor. Por favor, inténtelo más tarde.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
