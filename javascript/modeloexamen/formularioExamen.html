@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Validado</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="contenedor-formulario">
+        <h1>Registro de Usuario</h1>
+        <div class="grupo-formulario">
+            <label for="nombre">Nombre *</label>
+            <input type="text" id="nombre" name="nombre">
+            <small class="error" id="error-nombre"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="apellido1">Primer Apellido *</label>
+            <input type="text" id="apellido1" name="apellido1">
+            <small class="error" id="error-apellido1"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="apellido2">Segundo Apellido *</label>
+            <input type="text" id="apellido2" name="apellido2">
+            <small class="error" id="error-apellido2"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="dni">DNI *</label>
+            <input type="text" id="dni" name="dni">
+            <small class="error" id="error-dni"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email">
+            <small class="error" id="error-email"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="contrasena">Contraseña *</label>
+            <input type="password" id="contrasena" name="contrasena">
+            <small class="error" id="error-contrasena"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="confirmarContrasena">Confirmar Contraseña *</label>
+            <input type="password" id="confirmarContrasena" name="confirmarContrasena">
+            <small class="error" id="error-confirmarContrasena"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="descripcion">Descripción (opcional)</label>
+            <textarea id="descripcion" name="descripcion"></textarea>
+        </div>
+        <div class="grupo-formulario">
+            <label for="fechaNacimiento">Fecha de Nacimiento (opcional)</label>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento">
+        </div>
+        <div class="grupo-formulario">
+            <label>
+                Acepto el tratamiento de datos personales *
+                <input type="checkbox" id="aceptarTerminos" name="aceptarTerminos">
+            </label>
+            <small class="error" id="error-terminos"></small>
+        </div>
+        <button id="botonEnviar">Enviar</button>
+        <p id="nombreUsuarioGenerado"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
