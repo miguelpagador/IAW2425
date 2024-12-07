@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 2</title>
 </head>
+
 <body>
-    <input id="cantidad" type="text" placeholder="Introduce la cantidad">
-    <button onclick="convertiraDolares()">Convertir a dolares</button>
-    <button onclick="convertiraEuros()">Convertir a euros</button>
+    <input type="number" id="cantidad">
+    <button onclick="conversoreuros()">Convertir a Euros</button>
+    <button onclick="conversordolares()">Convertir a Dólares</button>
     <p id="resultado"></p>
     <script>
-        function convertiraDolares(){
-            if(esNumeroPositivo(document.getElementById("cantidad").value)){
-                let cantidad = document.getElementById("cantidad").value;
-                document.getElementById("resultado").innerHTML = cantidad * 1.09;
-                document.getElementById ("resultado").innerHTML += " dolares";
+        function conversoreuros() {
+            let numero = parseFloat(document.getElementById('cantidad').value);
+            if (isNaN(numero)) {
+                document.getElementById('resultado').innerHTML = 'Por favor, introduzca un número'
             }
-            alert("¡Debes introducir un número positivo!");
-            
-        }
-        function convertiraEuros () {
-            if(esNumeroPositivo(document.getElementById("cantidad").value)){
-            let cantidad = document.getElementById("cantidad").value;
-            document.getElementById("resultado").innerHTML = cantidad * 0.92;
-            document.getElementById ("resultado").innerHTML += " euros";
+            else if (numero<=0){
+                document.getElementById('resultado').innerHTML = 'Por favor, introduzca un número positivo mayor de 0'
             }
-            alert("¡Debes introducir un número positivo!");
+            else {
+                document.getElementById('resultado').innerHTML = (numero * 0.92).toFixed(2) + ' euros';
+            }
         }
-        function esNumeroPositivo(x){
-            if(isNaN(x))
-                return false;
-            else{
-                if(x>0)
-                    return true;
-                else
-                    return false;
+
+        function conversordolares() {
+            let numero = parseFloat(document.getElementById('cantidad').value);
+            if (isNaN(numero)) {
+                document.getElementById('resultado').innerHTML = 'Por favor, introduzca un número'
+            }
+            else if (numero<=0){
+                document.getElementById('resultado').innerHTML = 'Por favor, introduzca un número positivo mayor de 0'
+            }
+            else {
+                document.getElementById('resultado').innerHTML = (numero * 1.09).toFixed(2) + ' dólares';
             }
         }
     </script>
+
 </body>
+
 </html>
