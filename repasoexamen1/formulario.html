@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Validado</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f4f6;
+        margin: 0;
+        padding: 0;
+    }
+
+    .contenedor-formulario {
+        max-width: 600px;
+        margin: 50px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .grupo-formulario {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input, textarea, button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .error {
+        color: red;
+        font-size: 12px;
+    }
+
+    #nombreUsuarioGenerado {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+    </style>
+</head>
+<body>
+    <div class="contenedor-formulario">
+        <h1>Registro de Usuario</h1>
+        <div class="grupo-formulario">
+            <label for="nombre">Nombre *</label>
+            <input type="text" id="nombre" name="nombre">
+            <small class="error" id="error-nombre"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="apellido1">Primer Apellido *</label>
+            <input type="text" id="apellido1" name="apellido1">
+            <small class="error" id="error-apellido1"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="apellido2">Segundo Apellido *</label>
+            <input type="text" id="apellido2" name="apellido2">
+            <small class="error" id="error-apellido2"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="dni">DNI *</label>
+            <input type="text" id="dni" name="dni">
+            <small class="error" id="error-dni"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email">
+            <small class="error" id="error-email"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="telefono">Telefono *</label>
+            <input type="tel" id="tel" name="tel">
+            <small class="error" id="error-tel"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="contrasena">Contraseña *</label>
+            <input type="password" id="contrasena" name="contrasena">
+            <small class="error" id="error-contrasena"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="confirmarContrasena">Confirmar Contraseña *</label>
+            <input type="password" id="confirmarContrasena" name="confirmarContrasena">
+            <small class="error" id="error-confirmarContrasena"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="fecha">Fecha de Nacimiento (opcional)</label>
+            <input type="date" id="fecha" name="fecha">
+            <small class="error" id="error-fecha"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label for="descripcion">Descripción (opcional)</label>
+            <textarea id="descripcion" name="descripcion"></textarea>
+        </div>
+        <div class="grupo-formulario">
+            <label for="foto">Foto</label>
+            <input type="file" id="foto" name="foto">
+            <small class="error" id="error-foto"></small>
+        </div>
+        <div class="grupo-formulario">
+            <label>
+                Acepto el tratamiento de datos personales *
+                <input type="checkbox" id="aceptarTerminos" name="aceptarTerminos">
+            </label>
+            <small class="error" id="error-terminos"></small>
+        </div>
+        <button id="botonEnviar">Enviar</button>
+        <p id="nombreUsuarioGenerado"></p>
+    </div>
+    <script>
+        // Función de validación del DNI
+        function validarDNI(valor) {
+            let valido = false;
+            var validChars = 'TRWAGMYFPDXBNJZSQVHLCKET';
+            var nifRexp = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKET]$/i;
+            var nieRexp = /^[XYZ][0-9]{7}[TRWAGMYFPDXBNJZSQVHLCKET]$/i;
+            var str = valor.toString().toUpperCase();
+
+            if (!nifRexp.test(str) && !nieRexp.test(str))
+                valido = false;
+
+            var nie = str
+                .replace(/^[X]/, '0')
+                .replace(/^[Y]/, '1')
+                .replace(/^[Z]/, '2');
+
+            var letter = str.substr(-1);
+            var charIndex = parseInt(nie.substr(0, 8)) % 23;
+
+            if (validChars.charAt(charIndex) === letter)
+                valido = true;
+
+            return valido;
+        }
+
+        // Función de validación de fecha (mayoría de edad)
+        function validarFecha(fecha) {
+            if (!fecha) return true; // Si no se ha proporcionado una fecha, no es obligatorio
+
+            let hoy = new Date();
+            let fechaNacimiento = new Date(fecha);
+            let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+            let mes = hoy.getMonth() - fechaNacimiento.getMonth();
+
+            // Ajustar la edad si no ha cumplido años este año
+            if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNacimiento.getDate())) {
+                edad--;
+            }
+
+            if (edad < 18) {
+                document.getElementById('error-fecha').innerHTML = 'Debes ser mayor de 18 años.';
+                return false;
+            }
+            return true;
+        }
+
+        // Función de validación de foto
+        function validarFoto(foto) {
+            if (!foto) return true; // Si no se ha subido una foto, no es obligatorio
+
+            let archivo = document.getElementById('foto').files[0];
+            if (archivo) {
+                let extension = archivo.name.split('.').pop().toLowerCase();
+                let tamanioMaximo = 5 * 1024 * 1024; // 5MB
+
+                // Validar tipo de archivo y tamaño
+                if (!['png', 'jpg', 'jpeg'].includes(extension)) {
+                    document.getElementById('error-foto').innerHTML = 'La foto debe ser en formato PNG, JPG o JPEG.';
+                    return false;
+                }
+
+                if (archivo.size > tamanioMaximo) {
+                    document.getElementById('error-foto').innerHTML = 'El tamaño de la foto no debe superar los 5MB.';
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Referencia al botón de envío
+        let botonEnviar = document.getElementById('botonEnviar');
+
+        // Asignar evento al botón
+        botonEnviar.addEventListener('click', function () {
+
+            // Limpiar mensajes de error previos
+            let errores = document.querySelectorAll('.error');
+            for (let i = 0; i < errores.length; i++) {
+                errores[i].innerHTML = '';
+            }
+
+            // Obtener valores de los campos
+            let nombre = document.getElementById('nombre').value.trim();
+            let apellido1 = document.getElementById('apellido1').value.trim();
+            let apellido2 = document.getElementById('apellido2').value.trim();
+            let dni = document.getElementById('dni').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let telefono = document.getElementById('tel').value.trim();
+            let contrasena = document.getElementById('contrasena').value;
+            let confirmarContrasena = document.getElementById('confirmarContrasena').value;
+            let fecha = document.getElementById('fecha').value;
+            let foto = document.getElementById('foto').value;
+            let aceptarTerminos = document.getElementById('aceptarTerminos').checked;
+
+            let esValido = true;
+
+            // Validar campos obligatorios
+            if (!nombre) {
+                document.getElementById('error-nombre').innerHTML = 'El campo nombre es necesario para completar el formulario';
+                esValido = false;
+            }
+            if (!apellido1) {
+                document.getElementById('error-apellido1').innerHTML = 'El campo primer apellido es necesario para completar el formulario';
+                esValido = false;
+            }
+            if (!apellido2) {
+                document.getElementById('error-apellido2').innerHTML = 'El campo segundo apellido es necesario para completar el formulario';
+                esValido = false;
+            }
+            if (!validarDNI(dni)) {
+                document.getElementById('error-dni').innerHTML = 'El DNI debe tener 8 dígitos seguidos de una letra';
+                esValido = false;
+            }
+            if (!/^\S+@\S+\.\S+$/.test(email)) {
+                document.getElementById('error-email').innerHTML = 'El email debe tener el formato usuario@email.com';
+                esValido = false;
+            }
+            if (!/[0-9]{9}/.test(telefono)) {
+                document.getElementById('error-tel').innerHTML = 'El telefono debe tener los 9 numeros seguidos';
+                esValido = false;
+            }
+            if (contrasena.length < 8) {
+                document.getElementById('error-contrasena').innerHTML = 'La contraseña debe tener al menos 8 caracteres';
+                esValido = false;
+            }
+            if (contrasena !== confirmarContrasena) {
+                document.getElementById('error-confirmarContrasena').innerHTML = 'Las contraseñas no coinciden';
+                esValido = false;
+            }
+            if (!validarFecha(fecha)) {
+                esValido = false;
+            }
+            if (!validarFoto(foto)) {
+                esValido = false;
+            }
+            if (!aceptarTerminos) {
+                document.getElementById('error-terminos').innerHTML = 'Debe aceptar el tratamiento de datos personales';
+                esValido = false;
+            }
+
+            // Generar nombre de usuario si todo es válido
+            if (esValido) {
+                let nombreUsuario = `${nombre[0]}${apellido1.slice(0, 3)}${apellido2.slice(0, 3)}${dni.slice(-3)}`.toLowerCase().replace(/\s+/g, '');
+                document.getElementById('nombreUsuarioGenerado').innerHTML = `Nombre de usuario generado: ${nombreUsuario}`;
+                alert('Formulario enviado con éxito.');
+            }
+        });
+    </script>
+</body>
+</html>
