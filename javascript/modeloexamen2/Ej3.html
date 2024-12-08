@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+</head>
+<style>
+
+</style>
+<body>
+    <h1>Hotel Ficticio</h1>
+    
+    <div>Eliga el numero de habitaciones</div>
+    <select id="tipoh" name="tipoh">
+        <option value="1">Individuales (25€)</option>
+        <option value="2">Dobles (45€)</option>
+        <option value="3">Triples (80€)</option>
+      </select><br>
+
+    <div>Eliga el numero de habitacion:</div>
+    <select id="room" name="room">
+        <option value="1">Habitacion 102 (0€)</option>
+        <option value="2">Habitacion 103 (0€)</option>
+        <option value="3">Habitacion 108 (0€)</option>
+        <option value="4">Habitacion 202 (10€)</option>
+        <option value="5">Habitacion 204 (10€)</option>
+        <option value="6">Habitacion 306 (20€)</option>
+      </select> <br>
+
+      <div>Acceso a barra libre(5€)</div>
+      <input type="checkbox" id="servicio">
+
+      <div>Eliga la fecha</div>
+      <input type="text" id="fech"><br>
+
+      <button id="calcular">Calcular precio</button>
+      <p id="resultado"></p>
+<script>
+       $.datepicker.regional['es'] = {
+                closeText: 'Cerrar',
+                prevText: '<Ant',
+                nextText: 'Sig>',
+                currentText: 'Hoy',
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom','Lun','Mar','Mié','Juv','Vie','Sáb'],
+                dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sá'],
+                weekHeader: 'Sm',
+                dateFormat: "DD dd 'de' MM",
+                firstDay: 1,
+                isRTL: false,
+                minDate: "+1D", maxDate: "+1Y",
+                showMonthAfterYear: false,
+                yearSuffix: ''
+        };
+        $.datepicker.setDefaults($.datepicker.regional['es']);
+    $(document).ready(function () {
+        $("#fech").datepicker()
+        $("#calcular").click(function(){
+            $("#resultado").empty()
+            let tipohab = document.getElementById("tipoh").value
+            let preciotipohab;
+            switch (tipohab){
+                case "1":
+                    preciotipohab = 25;
+                    break;
+                case "2":
+                    preciotipohab = 45;
+                    break;
+                case "3":
+                    preciotipohab = 80;
+                    break;
+            }
+            let nhab = document.getElementById("room").value
+            let precionhab;
+           switch (nhab){
+          case "1":
+            case "2":
+            case "3":
+                precionhab = 0;
+                break;
+            case "4":
+            case "5":
+                precionhab = 10;
+                break;
+            case "6":
+                precionhab = 20;
+                break;
+           }
+
+           if($("#servicio").is(":checked")){
+                    servicio = 5
+                }else {servicio=0}
+         /*  let caja = document.getElementById("servicio").checked
+           let servicio = 0;
+           if(caja == true){servicio = 5}*/
+
+            let habitacion = $("#tipoh option:selected").text()
+            let truehabitacion = habitacion.slice(0, -5)
+            let numero = $("#room option:selected").text()
+            let truenumero = numero.slice(0, -5)
+           let fecha = $("#fech").val()
+            
+           if (fecha==''){
+            alert("Debes de elegir una fecha" )
+            $("#resultado").empty()
+           }else{
+            let todo = preciotipohab + precionhab + servicio;
+            $("#resultado").append("Ha seleccionado la habtitacion " + truenumero + 
+            " de tipo " + truehabitacion + " en el dia " + fecha + 
+            " por lo que el total seria " + todo)}
+        })
+    });
+</script>
+</body>
+</html>
+

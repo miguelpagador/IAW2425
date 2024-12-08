@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <title>Ejercicio 2</title>
+    <style>
+        body {
+            font-family: 'Alexandria', sans-serif;
+        }
+        h1 {
+            font-size: xx-large;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .contenedor {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+        .formulario {
+            width: 80%;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            margin: 50px auto;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            padding: 50px;
+            box-shadow: 10px 10px 10px #7c7e8b;
+            overflow: auto;
+            border: 1px dashed black;
+        }
+        .formulario>* {
+            margin: 10px;
+            padding: 10px;
+        }
+        input,
+        label {
+            font-size: 1.5em;
+        }
+        button {
+            background-color: #373841;
+            font-size: x-large;
+            height: 60px;
+            width: 25%;
+            border-radius: 20px;
+            color: white;
+            margin-left: 2%;
+            margin-top: 1%;
+        }
+        button:hover {
+            background-color: #545662;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1> Libreria </h1> <br>
+    <input type="text" id="texto">
+    <button id="uno"> Buscar un libro</button>
+    <button id="todos"> Buscar todos libros</button>
+        <p id="resultado"></p>
+    <script>
+        $(document).ready(function () {
+            let url = "https://gutendex.com/books/" 
+            $("#uno").click(function(){
+                $("#resultado").empty()
+                let libro = $("#texto").val()
+                if(libro=="" || libro<1){
+                    $("#resultado").text("Debes de poner un numero que sea positivo")
+                }else{
+                $.get(url + libro, function(cosa){
+                    console.log(cosa)
+                    $("#resultado").append(
+                        "<div>" + cosa.title + "</div> <br>"  + 
+                        "<div>" + cosa.authors[0].name + "</div> <br>" +
+                        "<img src=" + cosa.formats["image/jpeg"] + "> <br> <br>" +
+                        "<a href=" + cosa.formats["text/plain; charset=us-ascii"] + ">Haz click para descargar</a> <br> <br>" +
+                        "<div>" + cosa.download_count  + "</div>" )
+                })}
+            })
+            $("#todos").click(function(){
+                $("#resultado").empty()
+                $.get(url, function(cosa){
+                    console.log(cosa)
+                    for(let i=0;i<cosa.results.length;i++){
+                    $("#resultado").append(
+                        "<div>" + cosa.results[i].title + "</div> <br>"  + 
+                        "<div>" + cosa.results[i].authors[0].name + "</div> <br>" +
+                        "<img src=" + cosa.results[i].formats["image/jpeg"] + "> <br> <br>" +
+                        "<a href=" + cosa.results[i].formats["text/plain; charset=us-ascii"] + ">Haz click para descargar</a> <br> <br>" +
+                        "<div>" + cosa.results[i].download_count  + "</div> <br>" )}
+                })
+            })
+        });
+    </script>
+</body>
+</html>
+
