@@ -8,11 +8,11 @@
 <body>
     <h1>Días hasta la feria de Sevilla:</h1>
 <?php
-$feria = strtotime("2024-04-14");
+$feria = strtotime("2025-5-6");
 $hoy = time();
 $segundos = $feria - $hoy;
 $dias = ceil($segundos / (60 * 60 * 24));
-echo "<p>Faltan $dias días para el inicio de la Feria de abril de 2024.</p>";
+echo "<p>Faltan $dias días para el inicio de la Feria de abril de 2025.</p>";
 ?>
 </body>
 </html>
