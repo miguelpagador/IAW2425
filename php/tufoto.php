@@ -69,7 +69,7 @@ if (isset($_POST['enviar'])) {
             }
         }
     } else {
-        echo '<p style="color:red;">Por favor, selecciona un archivo.</p>';
+        echo '<p>;">Por favor, selecciona un archivo.</p>';
     }
 }
 ?>
