@@ -7,8 +7,6 @@
 </head>
 <body>
 <?php
-/* Crea un array con 4 o 5 refranes. Utiliza foreach para mostrar todos los refranes 
-en pantalla cada uno de ellos en un párrafo diferente.*/
 $refran = array("No por mucho madrugar amanece más temprano.", 
 "A quien a buen árbol se arreima, buena sombra le cobija.", 
 "Más vale pájaro en mano que ciento volando.", 

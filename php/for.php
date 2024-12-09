@@ -6,12 +6,14 @@
     <title>Uso de for</title>
 </head>
 <body>
-<?php
-/*Modifica el ejercicio anterior para realizar el mismo script pero utilizando for 
-y disponiendo los números en una fila.*/
-for ($x = 1; $x <= 10; $x++) {
-    echo "<td><tr>$x </tr></td>";
-}
-    ?>
+    <table>
+        <tr> 
+            <?php
+            for ($x = 1; $x <= 10; $x++) {
+                echo "<td>$x</td>";
+            }
+            ?>
+        </tr>
+    </table>
 </body>
 </html>

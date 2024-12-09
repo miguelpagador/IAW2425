@@ -12,17 +12,15 @@
 <?php
 	if (isset($_GET["numero"])){
 		$numero = htmlspecialchars($_GET["numero"]);
-		if ($numero>0 && is_numeric($numero)){
-			for ($i=$numero;$i>=1;$i--)
-			{	
-				for($j=1;$j<=$i;$j++)
-				{
+		if ($numero > 0 && is_numeric($numero)){
+			for ($i = 1; $i <= $numero; $i++) { 
+				for ($j = 1; $j <= $i; $j++) {
 					echo "* ";
 				}
 				echo "<br>";
 			}
 		}
-		else{
+		else {
 			echo "<p>Error. Hacker no te saltes el Javascript!</p>";
 		}
 	}
@@ -33,9 +31,9 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 	function compruebaNumero(evento){
 		evento.preventDefault();
-		let numero=parseInt(document.getElementById('numero').value);
-		if (numero<=0 || isNaN(numero)){
-			alert("¡Error!¡Debes escribir número positivo mayor que cero!");
+		let numero = parseInt(document.getElementById('numero').value);
+		if (numero <= 0 || isNaN(numero)){
+			alert("¡Error!¡Debes escribir un número positivo mayor que cero!");
 			return;
 		}
 		this.submit();

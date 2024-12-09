@@ -3,34 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu foto</title>
+    <title>Subir Imagen de Perfil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        img {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            margin: 20px 0;
+        }
+        input[type="text"], input[type="file"], input[type="submit"] {
+            margin: 10px;
+        }
+    </style>
 </head>
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" enctype="multipart/form-data">
-    <p><label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required></p>
-    <p><label for="foto">Foto:</label>
-    <input type="file" name="foto"></p>
-    <p><input type="submit" name="submit" value="Enviar datos"></p>
-    </form>
-<?php
-if (isset($_POST['submit'])) {
-    $nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
+<h1>Sube tu Imagen de Perfil</h1>
 
-    if (isset($_FILES['foto'])) {
-        $foto = $_FILES['foto'];
-        if ($foto['error'] === UPLOAD_ERR_OK) {
-            $destino = 'img/' . $foto['name'];
-            if (move_uploaded_file($foto['tmp_name'], $destino)) {
-                echo "<p>$nombre</p><p><img src='https://myblog-akoycdevr3.live-website.com/php/$destino'></p>";
-            } else {
-                echo "Error al mover el archivo a la carpeta de destino.";
-            }
+<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data">
+    <p>
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" name="nombre" id="nombre" required>
+    </p>
+    <p>
+        <label for="archivo">Subir una imagen:</label><br>
+        <input type="file" name="archivo" id="archivo" accept="image/*" required>
+    </p>
+    <p>
+        <input type="submit" name="enviar" value="Subir">
+    </p>
+</form>
+
+<?php
+if (isset($_POST['enviar'])) {
+    $nombre = htmlspecialchars($_POST['nombre']);
+    $archivo = $_FILES['archivo']['name'];
+
+    if (isset($archivo) && $archivo != "") {
+        $tipo = $_FILES['archivo']['type'];
+        $tamano = $_FILES['archivo']['size'];
+        $temp = $_FILES['archivo']['tmp_name'];
+
+        if (!((strpos($tipo, "gif") !== false || strpos($tipo, "jpeg") !== false || strpos($tipo, "jpg") !== false || strpos($tipo, "png") !== false) && ($tamano <= 2000000))) {
+            echo '<p style="color:red;"><b>Error:</b> La extensión o el tamaño del archivo no es correcto.<br>
+            - Se permiten archivos .gif, .jpg, .png de hasta 2 MB.</p>';
         } else {
-            echo "Error en la carga del archivo: " . $foto['error'];
+            $rutaDestino = 'images/' . $archivo;
+            if (!is_dir('images')) {
+
+                mkdir('images', 0777, true);
+            }
+            if (move_uploaded_file($temp, $rutaDestino)) {
+                chmod($rutaDestino, 0777);
+                echo '<h2>¡Bienvenido, ' . $nombre . '!</h2>';
+                echo '<p><img src="' . $rutaDestino . '" alt="Imagen de perfil"></p>';
+            } else {
+                echo '<p style="color:red;">Ocurrió un error al subir el archivo. No pudo guardarse.</p>';
+            }
         }
+    } else {
+        echo '<p style="color:red;">Por favor, selecciona un archivo.</p>';
     }
 }
 ?>
 </body>
 </html>
+

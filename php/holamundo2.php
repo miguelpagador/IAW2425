@@ -9,7 +9,6 @@
 <?php
 $cadena = "PHP con" . " echo";
 echo "<p>Hola mundo desde $cadena</p>";
-/*Esto es un comentario*/
 ?>
 </body>
 </html>

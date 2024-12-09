@@ -8,10 +8,15 @@
 <body>
     <h1>Esta imagen es aleatoria</h1>
 <?php
-$imagenes = 'img'; //ruta
-$lista = glob($imagenes . '/*.jpg'); //obtener lista
-$imgrnd = $lista[array_rand($lista)]; //aplicar azar
-echo "<img src='$imgrnd' alt='Imagen Aleatoria'>";
+$imagenes = 'img';
+$lista = glob($imagenes . '/*.jpg'); 
+
+if (count($lista) > 0) {
+    $imgrnd = $lista[array_rand($lista)];
+    echo "<img src='$imgrnd' alt='Imagen Aleatoria'>";
+} else {
+    echo "<p>No se encontraron imágenes en el directorio.</p>";
+}
 ?>
 </body>
 </html>

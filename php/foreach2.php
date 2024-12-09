@@ -9,11 +9,14 @@
 <?php
 $palabras = array("Gato"=>"Cat", "Perro"=>"Dog", "Ventana"=>"Window", 
 "Mesa"=>"Table", "Ratón"=>"Mouse");
+
 $numero = sizeof($palabras);
+
 foreach($palabras as $x => $val) {
   echo "$x = $val<br>";
-  echo "sizeof($palabras)"}
-  echo "Número de palabras en el array: " . $numero;
-    ?>
+}
+
+echo "Número de palabras en el array: " . $numero;
+?>
 </body>
 </html>

@@ -13,6 +13,6 @@ $Ref = $_SERVER['HTTP_REFERER'];
 echo "<p>Estás accediendo con la ip $IP</p>";
 echo "<p>Estás navegando con $navi</p>";
 echo "<p>Referido por $Ref</p>";
-    ?>
+?>
 </body>
 </html>
