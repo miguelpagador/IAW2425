@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .tweet {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .tweet img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .btn-image {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-image img {
+            width: 25px;
+            height: 25px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mensajes</h1>
+    <input type="text" id="mensaje" placeholder="Escribe tu tweet">
+    <button onclick="enviarMensaje()">Añadir</button>
+    <button onclick="borrarTodo()">Borrar Todo</button>
+    <div id="contenedor"></div>
+
+    <script src="mensajes.js"></script>
+</body>
+</html>

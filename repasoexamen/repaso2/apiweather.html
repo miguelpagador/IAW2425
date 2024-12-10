@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El tiempo</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Averigua la calidad del aire según coordenadas</h1>   
+    <label for="">Latitud: </label><input type="text" name="" id="lat"> <br><br>
+    <label for="">Longitud: </label><input type="text" name="" id="lon"><br><br>
+    <button id="boton" >Ver sobre coordenadas</button> 
+    <p id="resultado" ></p>
+    <p id="calidad" ></p>
+
+    <script>
+        $(document).ready(function () {
+            $("#boton").click(function () { 
+                let lat = $("#lat").val();
+                let lon = $("#lon").val();
+                let api = "b716811c5fc4c6c2f497d556382c1f5f"; 
+
+                $.ajax({
+                    url: `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${api}`,
+                    success: function (data) {
+                        let valor = data.list[0].main.aqi;
+
+                        let calidad;
+                        if (valor == 1) {
+                            calidad = "Buena";
+                        } else if (valor == 2) {
+                            calidad = "Aceptable";
+                        } else if (valor == 3) {
+                            calidad = "Moderada";
+                        } else if (valor == 4) {
+                            calidad = "Mala";
+                        } else if (valor == 5) {
+                            calidad = "Muy mala";
+                        }
+
+                        $("#calidad").html(`<h3>Calidad del aire: ${calidad}</h3>`);
+
+                        $("#resultado").html(
+                            `<h2> Información sobre las coordenadas: ${data.coord.lat}, ${data.coord.lon}</h2>
+                            <p>Cantidad de CO: ${data.list[0].components.co} μg/m3</p>
+                            <p>Cantidad de NO2: ${data.list[0].components.no2} μg/m3</p>
+                            <p>Cantidad de SO2: ${data.list[0].components.so2} μg/m3</p>`
+                        );
+                    },
+                    error: function(){
+                        $("#resultado").html("<p>No se pudo obtener información de dicha coordenada, pruebe con otra</p>");
+                        $("#calidad").html("");  
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
