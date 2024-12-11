@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Completo</title>
+    <title>Formulario Completo con Contraseña y Confirmación</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,7 +26,7 @@
     </style>
 </head>
 <body>
-<h1>Formulario Completo</h1>
+<h1>Formulario Completo con Contraseña y Confirmación</h1>
 
 <form action="formulario_completo.php" method="post">
     <p>
@@ -50,6 +50,14 @@
         <textarea name="mensaje" id="mensaje" rows="5" required></textarea>
     </p>
     <p>
+        <label for="contraseña">Contraseña:</label><br>
+        <input type="password" name="contraseña" id="contraseña" required>
+    </p>
+    <p>
+        <label for="confirmar_contraseña">Repetir Contraseña:</label><br>
+        <input type="password" name="confirmar_contraseña" id="confirmar_contraseña" required>
+    </p>
+    <p>
         <input type="submit" name="enviar" value="Enviar">
     </p>
 </form>
@@ -62,6 +70,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $telefono = preg_replace('/[^0-9]/', '', $_POST['telefono']); // Elimina caracteres no numéricos
     $edad = filter_var($_POST['edad'], FILTER_VALIDATE_INT);
     $mensaje = htmlspecialchars($_POST['mensaje'], ENT_QUOTES, 'UTF-8');
+    $contraseña = $_POST['contraseña'];
+    $confirmar_contraseña = $_POST['confirmar_contraseña'];
 
     // Verificaciones adicionales
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -70,6 +80,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p><b>Error:</b> La edad debe estar entre 1 y 120 años.</p>";
     } elseif (strlen($telefono) != 10) {
         echo "<p><b>Error:</b> El número de teléfono debe tener 10 dígitos.</p>";
+    } elseif ($contraseña !== $confirmar_contraseña) {
+        echo "<p><b>Error:</b> Las contraseñas no coinciden.</p>";
+    } elseif (strlen($contraseña) < 8) {
+        echo "<p><b>Error:</b> La contraseña debe tener al menos 8 caracteres.</p>";
     } else {
         // Mostrar datos sanitizados y validados
         echo "<h2>Gracias por completar el formulario, $nombre.</h2>";
@@ -80,5 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 </body>
 </html>
