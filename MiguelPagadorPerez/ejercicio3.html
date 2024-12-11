@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIF</title>
+</head>
+<body>
+    <h1>Mostrar imágenes de la API de Giphy:</h1>
+    <label>Tema: <input id="nombre"><button id="buscar">Buscar</button></label>
+    <p id="rdo"></p> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+$(document).ready(function () {
+    $('#buscar').click(function () {
+    let url = "https://api.giphy.com/v1/gifs/search?api_key=";
+    let api_key = "IHhC94jZbRB2EBNac2DiMhWniW1TB6Na";
+    let nombre = $("#nombre").val();
+    let url_completa = url +api_key+"&q="+nombre;
+    $.get(url_completa).done(function(respuesta){
+    console.log(respuesta)
+    let gifes = respuesta.data;
+    let resultado_html = '';
+    gifes.forEach(function(gifero) {
+    resultado_html += `
+    <p><h2>${gifero.title}</h2></p>
+    <p><img src="${gifero.images.original.url}"></p>`;
+    });
+    $("#rdo").html(resultado_html);
+    }).fail(function(){
+    console.log("Ocurrió un error al conectarnos al servidor");
+    });
+    });
+    });
+    </script>
+</body>
+</html>

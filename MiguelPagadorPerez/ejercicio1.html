@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <style>
+        #asum, #dnim, #nombrem, #ape1m, #fecham, #tlfnm, #direccionm, #CPm, #munim, #oficinam, #infom, #anex1m, #anex2m, #polim {color: red}
+    </style>
+</head>
+<body>
+    <p><label for="asunto">Asunto*: <input type="text" id="asunto"></label><label id="asum"></label></p>
+    <p><label for="dni">DNI/NIE*: <input type="text" id="dni"></label><label id="dnim"></label></p>
+    <p><label for="nombre">Nombre*: <input type="text" id="nombre"></label><label id="nombrem"></label></p>
+    <p><label for="apellido1">Primer Apellido*: <input type="text" id="apellido"></label><label id="ape1m"></label></p>
+    <p><label for="apellido2">Segundo Apellido: <input type="text" id="apellido2"></label></p>
+    <p><label for="fecha">Fecha de nacimiento: (dd/mm/aaaa)*: <input type="date" id="fecha"></label><label id="fecham"></label></p>
+    <p><label for="telefon">Teléfono de contacto*: <input type="text" id="tlfn"></label><label id="tlfnm"></label></p>
+    <p><label for="mail">Correo Electrónico (para respuesta): <input type="email" id="mail"></label></p>
+    <p><label for="domicilio">Domicílio*: <input type="text" id="direccion"></label><label id="direccionm"></label></p>
+    <p><label for="CP">Código Postal*: <input type="text" id="CP"></label><label id="CPm"></label></p>
+    <p><label for="muni"><select required name="municipio" class="form-control" id="municipio">
+        <option value="">Municipio*: </option>
+        <option value="41001">Aguadulce</option>
+        <option value="41002">Alanís</option>
+        <option value="41003">Albaida del Aljarafe</option>
+        <option value="41004">Alcalá de Guadaíra</option>
+        <option value="41005">Alcalá del Río</option>
+        <option value="41006">Alcolea del Río</option>
+        <option value="41007">Algaba, La</option>
+        <option value="41008">Algámitas</option>
+        <option value="41009">Almadén de la Plata</option>
+        <option value="41010">Almensilla</option>
+        <option value="41011">Arahal</option>
+        <option value="41012">Aznalcázar</option>
+        <option value="41013">Aznalcóllar</option>
+        <option value="41014">Badolatosa</option>
+        <option value="41015">Benacazón</option>
+        <option value="41016">Bollullos de la Mitación</option>
+        <option value="41017">Bormujos</option>
+        <option value="41018">Brenes</option>
+        <option value="41019">Burguillos</option>
+        <option value="41020">Cabezas de San Juan, Las</option>
+        <option value="41021">Camas</option>
+        <option value="41022">Campana, La</option>
+        <option value="41023">Cantillana</option>
+        <option value="41901">Cañada Rosal</option>
+        <option value="41024">Carmona</option>
+        <option value="41025">Carrión de los Céspedes</option>
+        <option value="41026">Casariche</option>
+        <option value="41027">Castilblanco de los Arroyos</option>
+        <option value="41028">Castilleja de Guzmán</option>
+        <option value="41029">Castilleja de la Cuesta</option>
+        <option value="41030">Castilleja del Campo</option>
+        <option value="41031">Castillo de las Guardas, El</option>
+        <option value="41032">Cazalla de la Sierra</option>
+        <option value="41033">Constantina</option>
+        <option value="41034">Coria del Río</option>
+        <option value="41035">Coripe</option>
+        <option value="41036">Coronil, El</option>
+        <option value="41037">Corrales, Los</option>
+        <option value="41903">Cuervo de Sevilla, El</option>
+        <option value="41038">Dos Hermanas</option>
+        <option value="41039">Écija</option>
+        <option value="41040">Espartinas</option>
+        <option value="41041">Estepa</option>
+        <option value="41042">Fuentes de Andalucía</option>
+        <option value="41043">Garrobo, El</option>
+        <option value="41044">Gelves</option>
+        <option value="41045">Gerena</option>
+        <option value="41046">Gilena</option>
+        <option value="41047">Gines</option>
+        <option value="41048">Guadalcanal</option>
+        <option value="41049">Guillena</option>
+        <option value="41050">Herrera</option>
+        <option value="41051">Huévar del Aljarafe</option>
+        <option value="41902">Isla Mayor</option>
+        <option value="41052">Lantejuela</option>
+        <option value="41053">Lebrija</option>
+        <option value="41054">Lora de Estepa</option>
+        <option value="41055">Lora del Río</option>
+        <option value="41056">Luisiana, La</option>
+        <option value="41057">Madroño, El</option>
+        <option value="41058">Mairena del Alcor</option>
+        <option value="41059">Mairena del Aljarafe</option>
+        <option value="41060">Marchena</option>
+        <option value="41061">Marinaleda</option>
+        <option value="41062">Martín de la Jara</option>
+        <option value="41063">Molares, Los</option>
+        <option value="41064">Montellano</option>
+        <option value="41065">Morón de la Frontera</option>
+        <option value="41066">Navas de la Concepción, Las</option>
+        <option value="41067">Olivares</option>
+        <option value="41068">Osuna</option>
+        <option value="41069">Palacios y Villafranca, Los</option>
+        <option value="41070">Palomares del Río</option>
+        <option value="41071">Paradas</option>
+        <option value="41072">Pedrera</option>
+        <option value="41073">Pedroso, El</option>
+        <option value="41074">Peñaflor</option>
+        <option value="41075">Pilas</option>
+        <option value="41076">Pruna</option>
+        <option value="41077">Puebla de Cazalla, La</option>
+        <option value="41078">Puebla de los Infantes, La</option>
+        <option value="41079">Puebla del Río, La</option>
+        <option value="41080">Real de la Jara, El</option>
+        <option value="41081">Rinconada, La</option>
+        <option value="41082">Roda de Andalucía, La</option>
+        <option value="41083">Ronquillo, El</option>
+        <option value="41084">Rubio, El</option>
+        <option value="41085">Salteras</option>
+        <option value="41086">San Juan de Aznalfarache</option>
+        <option value="41088">San Nicolás del Puerto</option>
+        <option value="41087">Sanlúcar la Mayor</option>
+        <option value="41089">Santiponce</option>
+        <option value="41090">Saucejo, El</option>
+        <option value="41091">Sevilla</option>
+        <option value="41092">Tocina</option>
+        <option value="41093">Tomares</option>
+        <option value="41094">Umbrete</option>
+        <option value="41095">Utrera</option>
+        <option value="41096">Valencina de la Concepción</option>
+        <option value="41097">Villamanrique de la Condesa</option>
+        <option value="41100">Villanueva de San Juan</option>
+        <option value="41098">Villanueva del Ariscal</option>
+        <option value="41099">Villanueva del Río y Minas</option>
+        <option value="41101">Villaverde del Río</option>
+        <option value="41102">Viso del Alcor, El</option></select>
+      </select></label><label id="munim"></label></p>
+      <p><label for="ofi"><select required name="oficina" class="form-control" id="oficina">
+        <option value="">Oficina*: </option>
+        <option value="1">Oficina 1</option>
+        <option value="2">Oficina 2</option>
+        <option value="3">Oficina 3</option>
+        <option value="4">Oficina 4</option>
+      </select></label><label id="oficinam"></label></p>
+      <p><label for="info">Información requerida*: <textarea id="info" name="info" rows="5" cols="50"></textarea></label><label id="infom"></label></p>
+      <p><label for="anex1">Fichero Anexo I (máximo 2MB): <input type="file" id="anex1"></label><label id="anex1m"></label></p>
+      <p><label for="anex2">Fichero Anexo II (máximo 2MB): <input type="file" id="anex2"></label><label id="anex2m"></label></p>
+<br>
+<br>
+<br>
+<p>He leído y aceptado la <a href="https://europa.eu/youreurope/business/dealing-with-customers/data-protection/data-protection-gdpr/index_es.htm">política de datos y normas de uso</a>
+    <input type="checkbox" id="poli" /><label id="polim"></label></p>
+    <button onclick="comp()">Enviar</button>
+    <p id="resultado"></p>
+<script>
+    var resultado = '';
+    function comp(){
+        let asunto = (document.getElementById('asunto').value);
+        let dni = (document.getElementById('dni').value);
+        let numero=8;
+        let contador=parseInt(dni.length);
+        let opciones="TRWAGMYFPDXBNJZSQVHLCKET";
+        let dnicom=/^[0-9]+$/ 
+        let Com=dni%23;
+        let FIN=opciones.substring(Com,Com+1);
+        let nombre = (document.getElementById('nombre').value);
+        let apellido = (document.getElementById('apellido').value);
+        let fecha = (document.getElementById('fecha').value);
+        let telefon = (document.getElementById('tlfn').value);
+        let telefval = new RegExp("^(\\+34|0034|34)?[6789]\\d{8}$");
+        let direccion = (document.getElementById('direccion').value);
+        let CP = (document.getElementById('CP').value);
+        let municipio = (document.getElementById('municipio').value);
+        let oficina = (document.getElementById('oficina').value);
+        let info = (document.getElementById('info').value);
+        const MAXIMO_TAMANIO_BYTES = 2097152;
+        let $anex1 = document.getElementById('anex1');
+        let $anex2 = document.getElementById('anex2');
+        let politica = (document.getElementById('poli').checked);
+
+        document.getElementById('asum').innerHTML='';
+        document.getElementById('dnim').innerHTML='';
+        document.getElementById('nombrem').innerHTML='';
+        document.getElementById('ape1m').innerHTML='';
+        document.getElementById('fecham').innerHTML='';
+        document.getElementById('tlfnm').innerHTML='';
+        document.getElementById('direccionm').innerHTML='';
+        document.getElementById('CPm').innerHTML='';
+        document.getElementById('munim').innerHTML='';
+        document.getElementById('oficinam').innerHTML='';
+        document.getElementById('infom').innerHTML='';
+        document.getElementById('anex1m').innerHTML='';
+        document.getElementById('anex2m').innerHTML='';
+        document.getElementById('polim').innerHTML='';
+
+        if (asunto.trim() === ''){document.getElementById("asum").innerHTML = " El campo Asunto es necesario para completar el formulario";}
+        if (dni.trim() === ''){document.getElementById("dnim").innerHTML = " El campo DNI es necesario para completar el formulario";}
+        else if (contador!=numero || !dni.match(dnicom)){document.getElementById("dnim").innerHTML = " El DNI es erróneo";}
+        if (nombre.trim() === ''){document.getElementById("nombrem").innerHTML = " El campo Nombre es necesario para completar el formulario";}
+        if (apellido.trim() === ''){document.getElementById("ape1m").innerHTML = " El campo Primer Apellido es necesario para completar el formulario";}
+        if (fecha.trim() === ''){document.getElementById("fecham").innerHTML = " El campo Fecha de Nacimiento es necesario para completar el formulario";}
+        if (telefon.trim() === ''){document.getElementById("tlfnm").innerHTML = " El campo Teléfono es necesario para completar el formulario";}
+        else if (!telefval.test(telefon)){document.getElementById("tlfnm").innerHTML = " Su número de teléfono es erróneo";}
+        if (direccion.trim() === ''){document.getElementById("direccionm").innerHTML = " El campo Domicilio es necesario para completar el formulario";}
+        if (CP.trim() === ''){document.getElementById("CPm").innerHTML = " El campo Código Postal es necesario para completar el formulario";}
+        if (provincia.trim() === ''){document.getElementById("munim").innerHTML = " El campo Provincia es necesario para completar el formulario";}
+        if (oficina.trim() === ''){document.getElementById("oficinam").innerHTML = " El campo Oficina es necesario para completar el formulario";}
+        if (info.trim() === ''){document.getElementById("infom").innerHTML = " El campo 'Información requerida' es necesario para completar el formulario";}
+        if (politica.checked()){getElementById("poli").innerHTML = "La politica tiene que estar marcada"};
+    } 
+        $anex1.addEventListener("change", function () {
+            if (this.files.length <= 0) return;
+            let archivo = this.files[0];
+            if (archivo.size > MAXIMO_TAMANIO_BYTES) {
+                let tamanioEnMb = MAXIMO_TAMANIO_BYTES / 1000000;
+                document.getElementById("anex1m").innerHTML = ` El tamaño máximo es ${tamanioEnMb} MB`;
+                $anex1.value = "";
+                console.log(archivo.size);
+            }
+        });
+
+        $anex2.addEventListener("change", function () {
+            if (this.files.length <= 0) return;
+            let archivo = this.files[0];
+            if (archivo.size > MAXIMO_TAMANIO_BYTES) {
+                const tamanioEnMb = MAXIMO_TAMANIO_BYTES / 1000000;
+                document.getElementById("anex2m").innerHTML = ` El tamaño máximo es ${tamanioEnMb} MB`;
+                $anex2.value = "";
+                console.log(archivo.size);
+            }
+        });
+</script>
+
+</body>
+</html>
