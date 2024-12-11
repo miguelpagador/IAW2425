@@ -78,8 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p><b>Error:</b> El email proporcionado no es válido.</p>";
     } elseif ($edad === false || $edad < 1 || $edad > 120) {
         echo "<p><b>Error:</b> La edad debe estar entre 1 y 120 años.</p>";
-    } elseif (strlen($telefono) != 10) {
-        echo "<p><b>Error:</b> El número de teléfono debe tener 10 dígitos.</p>";
+    } elseif (strlen($telefono) != 9) {
+        echo "<p><b>Error:</b> El número de teléfono debe tener 9 dígitos.</p>";
     } elseif ($contraseña !== $confirmar_contraseña) {
         echo "<p><b>Error:</b> Las contraseñas no coinciden.</p>";
     } elseif (strlen($contraseña) < 8) {
