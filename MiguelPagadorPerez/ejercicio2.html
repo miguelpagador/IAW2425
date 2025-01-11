@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energia cinetica</title>
+</head>
+<body>
+    Masa: <input type="number" placeholder="Introduce la masa en kg" id="masa">
+    Velocidad: <input type="number" placeholder="Introduce la velocidad en m/s" id="velocidad">
+    <p id="resultado"></p>
+    <button onclick="calcularEC()">Calcular Energia Cinetica</button>
+
+    <script>
+        function calcularEC (){
+            let masa = parseFloat(document.getElementById("masa").value);
+            let velocidad = parseFloat (document.getElementById("velocidad").value);
+            let resultado = 0.5*(masa)*(velocidad * velocidad);
+            let numero = parseFloat(document.getElementById('masa').value);
+            let num = parseFloat(document.getElementById('velocidad').value);
+            if (isNaN(numero) || (isNaN(num))) {
+                document.getElementById('resultado').innerHTML = 'Por favor, introduzca un número'
+            }
+            if (numero<=0 || num<=0){
+                document.getElementById('resultado').innerHTML = 'Por favor, introduzca un número positivo mayor de 0'
+            }
+            
+            if (resultado < 10){
+                document.getElementById("resultado").innerHTML = "La energía cinetica es baja: " + resultado + ". Joules";
+            }
+            else if (resultado > 10){
+                document.getElementById("resultado").innerHTML = "La energía cinetica es moderada: " + resultado + ". Joules";
+            }
+            else if (resultado < 100){
+                document.getElementById("resultado").innerHTML = "La energía cinetica es moderada: " + resultado + ". Joules";
+            }
+            else if (resultado > 100)
+                document.getElementById("resultado").innerHTML = "La energía cinetica es alta: " + resultado + ". Joules";
+            }
+    </script>
+</body>
+</html>
