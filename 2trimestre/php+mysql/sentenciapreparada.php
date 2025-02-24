@@ -1,7 +1,7 @@
 <?php
 $servername = "sql307.thsite.top";
 $username = "thsi_35748575";
-$password = "uS9rA5MT";
+$password = "**";
 $dbname = "thsi_35748575_bdprueba";
 
 // Create connection
